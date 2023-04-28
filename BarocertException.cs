@@ -11,10 +11,10 @@ namespace Barocert
             : base()
         {
         }
-        public BarocertException(long code, String Message)
+        public BarocertException(long code, string Message)
             : base(Message)
         {
-            this._code = code;
+            _code = code;
         }
 
         private long _code;
@@ -26,7 +26,7 @@ namespace Barocert
         public BarocertException(Linkhub.LinkhubException le)
             : base(le.Message, le)
         {
-            this._code = le.code;
+            _code = le.code;
         }
     }
 }
