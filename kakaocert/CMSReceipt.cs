@@ -6,10 +6,10 @@ namespace Barocert.kakaocert
     [DataContract]
     public class CMSReceipt
     {
-        [DataMember]
-        public string receiptId;
-        [DataMember]
-        public string tx_id;
-    }
+		[DataMember]
+		public string receiptID;
+		[DataMember]
+		public string scheme;
+	}
 
 }

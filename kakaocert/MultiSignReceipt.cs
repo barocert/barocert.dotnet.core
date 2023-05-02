@@ -6,9 +6,9 @@ namespace Barocert.kakaocert
     [DataContract]
     public class MultiSignReceipt
     {
-        [DataMember]
-        public string receiptId;
-        [DataMember]
-        public string scheme;
-    }
+		[DataMember]
+		public string receiptID;
+		[DataMember]
+		public string scheme;
+	}
 }

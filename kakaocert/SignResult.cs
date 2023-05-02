@@ -6,16 +6,14 @@ namespace Barocert.kakaocert
     [DataContract]
     public class SignResult
     {
-        [DataMember]
-        public string receiptID;
-        [DataMember]
-        public string requestID;
-        [DataMember]
-        public string state;
-        [DataMember]
-        public string signedData;
-        [DataMember]
-        public string ci;
-    }
+		[DataMember]
+		public string receiptID;
+		[DataMember]
+		public string state;
+		[DataMember]
+		public string signedData;
+		[DataMember]
+		public string ci;
+	}
 
 }

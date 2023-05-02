@@ -6,41 +6,39 @@ namespace Barocert.kakaocert
     [DataContract]
     public class SignStatus
     {
-        [DataMember]
-        public string receiptID;
-        [DataMember]
-        public string requestID;
-        [DataMember]
-        public string clientCode;
-        [DataMember]
-        public int state;
-        [DataMember]
-        public int expireIn;
-        [DataMember]
-        public string callCenterName;
-        [DataMember]
-        public string callCenterNum;
-        [DataMember]
-        public string reqTitle;
-        [DataMember]
-        public string authCategory;
-        [DataMember]
-        public string returnURL;
-        [DataMember]
-        public string tokenType;
-        [DataMember]
-        public string requestDT;
-        [DataMember]
-        public string viewDT;
-        [DataMember]
-        public string completeDT;
-        [DataMember]
-        public string expireDT;
-        [DataMember]
-        public string verifyDT;
-        [DataMember]
-        public string scheme;
-        [DataMember]
-        public bool appUseYN;
-    }
+		[DataMember]
+		public String receiptID;
+		[DataMember]
+		public String clientCode;
+		[DataMember]
+		public int state;
+		[DataMember]
+		public int expireIn;
+		[DataMember]
+		public String callCenterName;
+		[DataMember]
+		public String callCenterNum;
+		[DataMember]
+		public String reqTitle;
+		[DataMember]
+		public String authCategory;
+		[DataMember]
+		public String returnURL;
+		[DataMember]
+		public String tokenType;
+		[DataMember]
+		public String requestDT;
+		[DataMember]
+		public String viewDT;
+		[DataMember]
+		public String completeDT;
+		[DataMember]
+		public String expireDT;
+		[DataMember]
+		public String verifyDT;
+		[DataMember]
+		public String scheme;
+		[DataMember]
+		public bool appUseYN;
+	}
 }
