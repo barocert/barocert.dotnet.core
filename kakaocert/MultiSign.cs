@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Linkhub;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace Barocert.kakaocert
@@ -24,7 +25,7 @@ namespace Barocert.kakaocert
         public int expireIn;
 
         [DataMember]
-        public List<MultiSignTokens> token;
+		public List<MultiSignTokens> tokens = new List<MultiSignTokens>();
 
         [DataMember]
         public string tokenType;
@@ -32,6 +33,11 @@ namespace Barocert.kakaocert
         public string returnURL;
         [DataMember]
         public bool appUseYN;
-    }
+
+		public void addToken(MultiSignTokens token)
+		{
+			tokens.Add(token);
+		}
+	}
 
 }

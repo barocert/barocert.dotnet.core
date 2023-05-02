@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kakaocert", "Kakaocert.csproj", "{7D579ADC-90D4-43BC-907E-362F914971D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barocert", "Barocert.csproj", "{7D579ADC-90D4-43BC-907E-362F914971D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
