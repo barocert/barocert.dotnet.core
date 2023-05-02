@@ -39,7 +39,7 @@ namespace Barocert.kakaocert
 		[DataMember]
 		public string scheme;
 		[DataMember]
-		public bool appUseYN;;
+		public bool appUseYN;
 
     }
 }
