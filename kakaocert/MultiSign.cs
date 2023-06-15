@@ -16,8 +16,6 @@ namespace Barocert.kakaocert
 		[DataMember]
 		public string receiverBirthday;
 		[DataMember]
-		public string ci;
-		[DataMember]
 		public string reqTitle;
 		[DataMember]
 		public int? expireIn;
