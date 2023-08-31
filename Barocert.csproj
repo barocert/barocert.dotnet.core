@@ -5,12 +5,12 @@
     <Authors>Linkhub</Authors>
     <Company>Linkhub</Company>
     <Description>Barocert SDK for dotnetcore</Description>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\linkhub.dotnet.core\Linkhub.csproj" />
+    <PackageReference Include="Linkhub" Version="1.6.0" />
   </ItemGroup>
 
 </Project>
