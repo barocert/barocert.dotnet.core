@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Barocert.kakaocert
+namespace Barocert
 {
     [DataContract]
     public class Response

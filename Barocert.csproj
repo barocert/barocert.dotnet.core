@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Linkhub" Version="1.5.0" />
+    <ProjectReference Include="..\..\linkhub.dotnet.core\Linkhub.csproj" />
   </ItemGroup>
 
 </Project>

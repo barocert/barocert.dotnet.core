@@ -1,6 +1,6 @@
 # Barocert DotnetCore SDK
 
-Barocert SDK for dontetcore
+Barocert SDK for dontetcore(v1.1.0)
 ## Reference 
 - The Bouncy Castle Cryptography Library For .NET (v.1.9.0)
   - site : www.bouncycastle.org/csharp 

@@ -12,20 +12,19 @@ using Linkhub.BouncyCastle.Crypto.Modes;
 using Linkhub.BouncyCastle.Crypto.Engines;
 using Linkhub.BouncyCastle.Crypto.Parameters;
 
-namespace Barocert.kakaocert
+namespace Barocert.passcert
 {
 
-    public class KakaocertService : BaseService
+    public class PasscertService : BaseService
     {
 
-        public KakaocertService(string LinkID, string SecretKey)
+        public PasscertService(string LinkID, string SecretKey)
             :base(LinkID, SecretKey)
-        {
-            this.AddScope("401");
-            this.AddScope("402");
-            this.AddScope("403");
-            this.AddScope("404");
-            this.AddScope("405");
+        {   
+            this.AddScope("441");
+            this.AddScope("442");
+            this.AddScope("443");
+            this.AddScope("444");
         }
 
         public IdentityReceipt requestIdentity(string ClientCode, Identity identity)
@@ -36,14 +35,14 @@ namespace Barocert.kakaocert
             if (null == identity) throw new BarocertException(-99999999, "본인인증 요청정보가 입력되지 않았습니다.");
             if (String.IsNullOrEmpty(identity.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
             if (String.IsNullOrEmpty(identity.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(identity.receiverBirthday)) throw new BarocertException(-99999999, "생년월일이 입력되지 않았습니다.");
-            if (null == identity.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
             if (String.IsNullOrEmpty(identity.reqTitle)) throw new BarocertException(-99999999, "인증요청 메시지 제목이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(identity.callCenterNum)) throw new BarocertException(-99999999, "고객센터 연락처가 입력되지 않았습니다.");
+            if (null == identity.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
             if (String.IsNullOrEmpty(identity.token)) throw new BarocertException(-99999999, "토큰 원문이 입력되지 않았습니다.");
 
             string PostData = toJsonString(identity);
 
-            return httppost<IdentityReceipt>("/KAKAO/Identity/" + ClientCode, PostData);
+            return httppost<IdentityReceipt>("/PASS/Identity/" + ClientCode, PostData);
         }
 
         public IdentityStatus getIdentityStatus(string ClientCode, string ReceiptId)
@@ -55,10 +54,10 @@ namespace Barocert.kakaocert
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<IdentityStatus>("/KAKAO/Identity/" + ClientCode + "/" + ReceiptId);
+            return httpget<IdentityStatus>("/PASS/Identity/" + ClientCode + "/" + ReceiptId);
         }
 
-        public IdentityResult verifyIdentity(string ClientCode, string ReceiptId)
+        public IdentityResult verifyIdentity(string ClientCode, string ReceiptId, IdentityVerify identityVerify)
         {
             if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
@@ -66,8 +65,13 @@ namespace Barocert.kakaocert
             if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (null == identityVerify) throw new BarocertException(-99999999, "본인인증 검증 요청 정보가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(identityVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(identityVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            return httppost<IdentityResult>("/KAKAO/Identity/" + ClientCode + "/" + ReceiptId);
+            String PostData = toJsonString(identityVerify);
+
+            return httppost<IdentityResult>("/PASS/Identity/" + ClientCode + "/" + ReceiptId, PostData);
         }
 
         public SignReceipt requestSign(string ClientCode, Sign sign)
@@ -78,15 +82,15 @@ namespace Barocert.kakaocert
            if (null == sign) throw new BarocertException(-99999999, "전자서명 요청정보가 입력되지 않았습니다.");
            if (String.IsNullOrEmpty(sign.receiverHP)) throw new BarocertException(-99999999,"수신자 휴대폰번호가 입력되지 않았습니다.");
            if (String.IsNullOrEmpty(sign.receiverName)) throw new BarocertException(-99999999,"수신자 성명이 입력되지 않았습니다.");
-           if (String.IsNullOrEmpty(sign.receiverBirthday)) throw new BarocertException(-99999999,"생년월일이 입력되지 않았습니다.");
+           if (String.IsNullOrEmpty(sign.reqTitle)) throw new BarocertException(-99999999, "인증요청 메시지 제목이 입력되지 않았습니다.");
+           if (String.IsNullOrEmpty(sign.callCenterNum)) throw new BarocertException(-99999999, "고객센터 연락처가 입력되지 않았습니다.");
            if (null == sign.expireIn) throw new BarocertException(-99999999,"만료시간이 입력되지 않았습니다.");
-           if (String.IsNullOrEmpty(sign.reqTitle)) throw new BarocertException(-99999999,"인증요청 메시지 제목이 입력되지 않았습니다.");
            if (String.IsNullOrEmpty(sign.token)) throw new BarocertException(-99999999,"토큰 원문이 입력되지 않았습니다.");
            if (String.IsNullOrEmpty(sign.tokenType)) throw new BarocertException(-99999999,"원문 유형이 입력되지 않았습니다.");
 
            string PostData = toJsonString(sign);
 
-            return httppost<SignReceipt>("/KAKAO/Sign/" + ClientCode, PostData);
+            return httppost<SignReceipt>("/PASS/Sign/" + ClientCode, PostData);
         }
 
         public SignStatus getSignStatus(string ClientCode, string ReceiptId)
@@ -98,10 +102,10 @@ namespace Barocert.kakaocert
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<SignStatus>("/KAKAO/Sign/" + ClientCode + "/" + ReceiptId);
+            return httpget<SignStatus>("/PASS/Sign/" + ClientCode + "/" + ReceiptId);
         }
 
-        public SignResult verifySign(string ClientCode, string ReceiptId)
+        public SignResult verifySign(string ClientCode, string ReceiptId, SignVerify signVerify)
         {
             if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
@@ -109,54 +113,13 @@ namespace Barocert.kakaocert
             if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (null == signVerify) throw new BarocertException(-99999999, "전자서명 검증 요청 정보가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(signVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(signVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            return httppost<SignResult>("/KAKAO/Sign/" + ClientCode + "/" + ReceiptId);
-        }
+            String PostData = toJsonString(signVerify);
 
-        public MultiSignReceipt requestMultiSign(string ClientCode, MultiSign multiSign)
-        {
-            if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
-            if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (null == multiSign) throw new BarocertException(-99999999, "전자서명 요청정보가 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(multiSign.receiverHP)) throw new BarocertException(-99999999,"수신자 휴대폰번호가 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(multiSign.receiverName)) throw new BarocertException(-99999999,"수신자 성명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(multiSign.receiverBirthday)) throw new BarocertException(-99999999,"생년월일이 입력되지 않았습니다.");
-            if (null == multiSign.expireIn) throw new BarocertException(-99999999,"만료시간이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(multiSign.reqTitle)) throw new BarocertException(-99999999,"인증요청 메시지 제목이 입력되지 않았습니다.");
-            if (isNullorEmptyTitle(multiSign.tokens)) throw new BarocertException(-99999999,"인증요청 메시지 제목이 입력되지 않았습니다.");
-            if (isNullorEmptyToken(multiSign.tokens)) throw new BarocertException(-99999999,"토큰 원문이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(multiSign.tokenType)) throw new BarocertException(-99999999,"원문 유형이 입력되지 않았습니다.");
-
-            string PostData = toJsonString(multiSign);
-
-            return httppost<MultiSignReceipt>("/KAKAO/MultiSign/" + ClientCode, PostData);
-        }
-
-
-        public MultiSignStatus getMultiSignStatus(string ClientCode, string ReceiptId)
-        {
-            if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
-            if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
-
-            return httpget<MultiSignStatus>("/KAKAO/MultiSign/" + ClientCode + "/" + ReceiptId);
-        }
-
-
-        public MultiSignResult verifyMultiSign(string ClientCode, string ReceiptId)
-        {
-            if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
-            if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
-
-            return httppost<MultiSignResult>("/KAKAO/MultiSign/" + ClientCode + "/" + ReceiptId);
+            return httppost<SignResult>("/PASS/Sign/" + ClientCode + "/" + ReceiptId, PostData);
         }
 
         public CMSReceipt requestCMS(string ClientCode, CMS cms)
@@ -165,21 +128,19 @@ namespace Barocert.kakaocert
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
             if (null == cms) throw new BarocertException(-99999999, "자동이체 출금동의 요청정보가 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.receiverHP)) throw new BarocertException(-99999999,"수신자 휴대폰번호가 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.receiverName)) throw new BarocertException(-99999999,"수신자 성명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.receiverBirthday)) throw new BarocertException(-99999999,"생년월일이 입력되지 않았습니다.");
-            if (null == cms.expireIn) throw new BarocertException(-99999999,"만료시간이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.reqTitle)) throw new BarocertException(-99999999,"인증요청 메시지 제목이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.requestCorp)) throw new BarocertException(-99999999,"청구기관명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.bankName)) throw new BarocertException(-99999999,"은행명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.bankAccountNum)) throw new BarocertException(-99999999,"계좌번호가 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.bankAccountName)) throw new BarocertException(-99999999,"예금주명이 입력되지 않았습니다.");
-            if (String.IsNullOrEmpty(cms.bankAccountBirthday)) throw new BarocertException(-99999999,"예금주 생년월일이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.reqTitle)) throw new BarocertException(-99999999, "인증요청 메시지 제목이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.callCenterNum)) throw new BarocertException(-99999999, "고객센터 연락처가 입력되지 않았습니다.");
+            if (null == cms.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.bankName)) throw new BarocertException(-99999999, "출금은행명이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.bankAccountNum)) throw new BarocertException(-99999999, "출금계좌번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cms.bankAccountName)) throw new BarocertException(-99999999, "출금계좌 예금주명이 입력되지 않았습니다.");
             if (String.IsNullOrEmpty(cms.bankServiceType)) throw new BarocertException(-99999999, "출금 유형이 입력되지 않았습니다.");
-            
+
             string PostData = toJsonString(cms);
 
-            return httppost<CMSReceipt>("/KAKAO/CMS/" + ClientCode, PostData);
+            return httppost<CMSReceipt>("/PASS/CMS/" + ClientCode, PostData);
         }
 
         public CMSStatus getCMSStatus(string ClientCode, string ReceiptId)
@@ -191,10 +152,45 @@ namespace Barocert.kakaocert
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<CMSStatus>("/KAKAO/CMS/" + ClientCode + "/" + ReceiptId);
+            return httpget<CMSStatus>("/PASS/CMS/" + ClientCode + "/" + ReceiptId);
         }
 
-        public CMSResult verifyCMS(string ClientCode, string ReceiptId)
+        public CMSResult verifyCMS(string ClientCode, string ReceiptId, CMSVerify cmsVerify)
+        {
+            if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
+            if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
+            if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (null == cmsVerify) throw new BarocertException(-99999999, "출금동의 검증 요청 정보가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cmsVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(cmsVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
+
+            String PostData = toJsonString(cmsVerify);
+
+            return httppost<CMSResult>("/PASS/CMS/" + ClientCode + "/" + ReceiptId, PostData);
+        }
+
+        public LoginReceipt requestLogin(String ClientCode, Login login)
+        {
+            if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
+            if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
+            if (null == login) throw new BarocertException(-99999999, "간편로그인 요청정보가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(login.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(login.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(login.reqTitle)) throw new BarocertException(-99999999, "인증요청 메시지 제목이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(login.callCenterNum)) throw new BarocertException(-99999999, "고객센터 연락처가 입력되지 않았습니다.");
+            if (null == login.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(login.token)) throw new BarocertException(-99999999, "토큰 원문이 입력되지 않았습니다.");
+
+            String PostData = toJsonString(login);
+
+            return httppost<LoginReceipt>("/PASS/Login/" + ClientCode, PostData);
+        }
+
+        public LoginStatus getLoginStatus(String ClientCode, String ReceiptId)
         {
             if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
@@ -203,35 +199,24 @@ namespace Barocert.kakaocert
             if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
             if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httppost<CMSResult>("/KAKAO/CMS/" + ClientCode + "/" + ReceiptId);
+            return httpget<LoginStatus>("/PASS/Login/" + ClientCode + "/" + ReceiptId);
         }
 
-        public LoginResult verifyLogin(string ClientCode, string txID)
+        public LoginResult verifyLogin(String ClientCode, String ReceiptId, LoginVerify loginVerify)
         {
             if (String.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (String.IsNullOrEmpty(txID)) throw new BarocertException(-99999999, "트랜잭션 아이디가 입력되지 않았습니다.");
-            
-            return httppost<LoginResult>("/KAKAO/Login/" + ClientCode + "/" + txID);
-        }
+            if (String.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (null == loginVerify) throw new BarocertException(-99999999, "본인인증 검증 요청 정보가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(loginVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
+            if (String.IsNullOrEmpty(loginVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-        public bool isNullorEmptyTitle(List<MultiSignTokens> multiSignTokens){
-            if(multiSignTokens == null) return true;
-            foreach(MultiSignTokens signTokens in multiSignTokens ){
-                if(signTokens == null) return true;
-                if(String.IsNullOrEmpty(signTokens.reqTitle)) return true;
-            }
-            return false;
-        }
+            String PostData = toJsonString(loginVerify);
 
-        public bool isNullorEmptyToken(List<MultiSignTokens> multiSignTokens){
-            if(multiSignTokens == null) return true;
-            foreach(MultiSignTokens signTokens in multiSignTokens ){
-                if(signTokens == null) return true;
-                if(String.IsNullOrEmpty(signTokens.token)) return true;
-            }
-        return false;
+            return httppost<LoginResult>("/PASS/Login/" + ClientCode + "/" + ReceiptId, PostData);
         }
 
     }
