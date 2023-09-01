@@ -13,5 +13,4 @@ namespace Barocert.passcert
         [DataMember]
         public String marketUrl;
     }
-
 }

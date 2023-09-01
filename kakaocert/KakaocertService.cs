@@ -231,7 +231,7 @@ namespace Barocert.kakaocert
                 if(signTokens == null) return true;
                 if(String.IsNullOrEmpty(signTokens.token)) return true;
             }
-        return false;
+            return false;
         }
 
     }

@@ -6,10 +6,10 @@ namespace Barocert.passcert
     [DataContract]
     public class CMSResult
     {
-		[DataMember]
-		public string receiptID;
-		[DataMember]
-		public string state;
+        [DataMember]
+        public string receiptID;
+        [DataMember]
+        public string state;
         [DataMember]
         public string receiverHP;
         [DataMember]
@@ -25,8 +25,8 @@ namespace Barocert.passcert
         [DataMember]
         public string receiverTelcoType;
         [DataMember]
-		public string signedData;
-		[DataMember]
-		public string ci;
-	}
+        public string signedData;
+        [DataMember]
+        public string ci;
+    }
 }

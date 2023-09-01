@@ -6,9 +6,9 @@ namespace Barocert.kakaocert
     [DataContract]
     public class IdentityReceipt
     {
-		[DataMember]
-		public string receiptID;
-		[DataMember]
-		public string scheme;
-	}
+        [DataMember]
+        public string receiptID;
+        [DataMember]
+        public string scheme;
+    }
 }

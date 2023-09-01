@@ -37,5 +37,4 @@ namespace Barocert.passcert
         [DataMember]
         public bool useTssYN;
     }
-
 }

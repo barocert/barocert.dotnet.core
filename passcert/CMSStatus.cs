@@ -6,18 +6,18 @@ namespace Barocert.passcert
     [DataContract]
     public class CMSStatus
     {
-		[DataMember]
-		public string receiptID;
-		[DataMember]
-		public string clientCode;
-		[DataMember]
-		public int state;
-		[DataMember]
-		public int expireIn;
-		[DataMember]
-		public string callCenterName;
-		[DataMember]
-		public string callCenterNum;
+        [DataMember]
+        public string receiptID;
+        [DataMember]
+        public string clientCode;
+        [DataMember]
+        public int state;
+        [DataMember]
+        public int expireIn;
+        [DataMember]
+        public string callCenterName;
+        [DataMember]
+        public string callCenterNum;
         [DataMember]
         public String reqTitle;
         [DataMember]
@@ -41,9 +41,8 @@ namespace Barocert.passcert
         [DataMember]
         public String deviceOSType;
         [DataMember]
-		public string scheme;
-		[DataMember]
-		public bool appUseYN;
-
+        public string scheme;
+        [DataMember]
+        public bool appUseYN;
     }
 }
