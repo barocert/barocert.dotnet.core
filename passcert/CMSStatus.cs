@@ -19,27 +19,27 @@ namespace Barocert.passcert
         [DataMember]
         public string callCenterNum;
         [DataMember]
-        public String reqTitle;
+        public string reqTitle;
         [DataMember]
-        public String reqMessage;
+        public string reqMessage;
         [DataMember]
-        public String requestDT;
+        public string requestDT;
         [DataMember]
-        public String completeDT;
+        public string completeDT;
         [DataMember]
-        public String expireDT;
+        public string expireDT;
         [DataMember]
-        public String rejectDT;
+        public string rejectDT;
         [DataMember]
-        public String tokenType;
+        public string tokenType;
         [DataMember]
         public bool userAgreementYN;
         [DataMember]
         public bool receiverInfoYN;
         [DataMember]
-        public String telcoType;
+        public string telcoType;
         [DataMember]
-        public String deviceOSType;
+        public string deviceOSType;
         [DataMember]
         public string scheme;
         [DataMember]
