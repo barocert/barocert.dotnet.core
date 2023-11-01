@@ -215,24 +215,5 @@ namespace Barocert.kakaocert
             
             return httppost<LoginResult>("/KAKAO/Login/" + ClientCode + "/" + txID);
         }
-
-        public bool isNullorEmptyTitle(List<MultiSignTokens> multiSignTokens){
-            if(multiSignTokens == null) return true;
-            foreach(MultiSignTokens signTokens in multiSignTokens ){
-                if(signTokens == null) return true;
-                if(String.IsNullOrEmpty(signTokens.reqTitle)) return true;
-            }
-            return false;
-        }
-
-        public bool isNullorEmptyToken(List<MultiSignTokens> multiSignTokens){
-            if(multiSignTokens == null) return true;
-            foreach(MultiSignTokens signTokens in multiSignTokens ){
-                if(signTokens == null) return true;
-                if(String.IsNullOrEmpty(signTokens.token)) return true;
-            }
-            return false;
-        }
-
     }
 }
