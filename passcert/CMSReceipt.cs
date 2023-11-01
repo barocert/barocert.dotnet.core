@@ -7,7 +7,7 @@ namespace Barocert.passcert
     public class CMSReceipt
     {
         [DataMember]
-        public string receiptId;
+        public string receiptID;
         [DataMember]
         public string scheme;
         [DataMember]
