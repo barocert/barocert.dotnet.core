@@ -7,8 +7,8 @@ namespace Barocert.navercert
     public class MultiSignTokens
     {
         [DataMember]
-        public String token;
+        public string token;
         [DataMember]
-        public String tokenType;
+        public string tokenType;
     }
 }
