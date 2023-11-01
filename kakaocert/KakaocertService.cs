@@ -41,7 +41,7 @@ namespace Barocert.kakaocert
             if (string.IsNullOrEmpty(identity.reqTitle)) throw new BarocertException(-99999999, "인증요청 메시지 제목이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(identity.token)) throw new BarocertException(-99999999, "토큰 원문이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(identity);
+            string PostData = toJsonString(identity);
 
             return httppost<IdentityReceipt>("/KAKAO/Identity/" + ClientCode, PostData);
         }
@@ -84,7 +84,7 @@ namespace Barocert.kakaocert
            if (string.IsNullOrEmpty(sign.token)) throw new BarocertException(-99999999,"토큰 원문이 입력되지 않았습니다.");
            if (string.IsNullOrEmpty(sign.tokenType)) throw new BarocertException(-99999999,"원문 유형이 입력되지 않았습니다.");
 
-           string PostData = toJsonstring(sign);
+           string PostData = toJsonString(sign);
 
             return httppost<SignReceipt>("/KAKAO/Sign/" + ClientCode, PostData);
         }
@@ -128,7 +128,7 @@ namespace Barocert.kakaocert
             if (isNullorEmptyToken(multiSign.tokens)) throw new BarocertException(-99999999,"토큰 원문이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(multiSign.tokenType)) throw new BarocertException(-99999999,"원문 유형이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(multiSign);
+            string PostData = toJsonString(multiSign);
 
             return httppost<MultiSignReceipt>("/KAKAO/MultiSign/" + ClientCode, PostData);
         }
@@ -177,7 +177,7 @@ namespace Barocert.kakaocert
             if (string.IsNullOrEmpty(cms.bankAccountBirthday)) throw new BarocertException(-99999999,"예금주 생년월일이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(cms.bankServiceType)) throw new BarocertException(-99999999, "출금 유형이 입력되지 않았습니다.");
             
-            string PostData = toJsonstring(cms);
+            string PostData = toJsonString(cms);
 
             return httppost<CMSReceipt>("/KAKAO/CMS/" + ClientCode, PostData);
         }

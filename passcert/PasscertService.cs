@@ -40,7 +40,7 @@ namespace Barocert.passcert
             if (null == identity.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(identity.token)) throw new BarocertException(-99999999, "토큰 원문이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(identity);
+            string PostData = toJsonString(identity);
 
             return httppost<IdentityReceipt>("/PASS/Identity/" + ClientCode, PostData);
         }
@@ -69,7 +69,7 @@ namespace Barocert.passcert
             if (string.IsNullOrEmpty(identityVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(identityVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(identityVerify);
+            string PostData = toJsonString(identityVerify);
 
             return httppost<IdentityResult>("/PASS/Identity/" + ClientCode + "/" + ReceiptId, PostData);
         }
@@ -88,7 +88,7 @@ namespace Barocert.passcert
            if (string.IsNullOrEmpty(sign.token)) throw new BarocertException(-99999999,"토큰 원문이 입력되지 않았습니다.");
            if (string.IsNullOrEmpty(sign.tokenType)) throw new BarocertException(-99999999,"원문 유형이 입력되지 않았습니다.");
 
-           string PostData = toJsonstring(sign);
+           string PostData = toJsonString(sign);
 
             return httppost<SignReceipt>("/PASS/Sign/" + ClientCode, PostData);
         }
@@ -117,7 +117,7 @@ namespace Barocert.passcert
             if (string.IsNullOrEmpty(signVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(signVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(signVerify);
+            string PostData = toJsonString(signVerify);
 
             return httppost<SignResult>("/PASS/Sign/" + ClientCode + "/" + ReceiptId, PostData);
         }
@@ -138,7 +138,7 @@ namespace Barocert.passcert
             if (string.IsNullOrEmpty(cms.bankAccountName)) throw new BarocertException(-99999999, "출금계좌 예금주명이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(cms.bankServiceType)) throw new BarocertException(-99999999, "출금 유형이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(cms);
+            string PostData = toJsonString(cms);
 
             return httppost<CMSReceipt>("/PASS/CMS/" + ClientCode, PostData);
         }
@@ -167,7 +167,7 @@ namespace Barocert.passcert
             if (string.IsNullOrEmpty(cmsVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(cmsVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(cmsVerify);
+            string PostData = toJsonString(cmsVerify);
 
             return httppost<CMSResult>("/PASS/CMS/" + ClientCode + "/" + ReceiptId, PostData);
         }
@@ -185,7 +185,7 @@ namespace Barocert.passcert
             if (null == login.expireIn) throw new BarocertException(-99999999, "만료시간이 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(login.token)) throw new BarocertException(-99999999, "토큰 원문이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(login);
+            string PostData = toJsonString(login);
 
             return httppost<LoginReceipt>("/PASS/Login/" + ClientCode, PostData);
         }
@@ -214,7 +214,7 @@ namespace Barocert.passcert
             if (string.IsNullOrEmpty(loginVerify.receiverHP)) throw new BarocertException(-99999999, "수신자 휴대폰번호가 입력되지 않았습니다.");
             if (string.IsNullOrEmpty(loginVerify.receiverName)) throw new BarocertException(-99999999, "수신자 성명이 입력되지 않았습니다.");
 
-            string PostData = toJsonstring(loginVerify);
+            string PostData = toJsonString(loginVerify);
 
             return httppost<LoginResult>("/PASS/Login/" + ClientCode + "/" + ReceiptId, PostData);
         }
