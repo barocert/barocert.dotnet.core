@@ -46,28 +46,28 @@ namespace Barocert.navercert
             return httppost<IdentityReceipt>("/NAVER/Identity/" + ClientCode, PostData);
         }
 
-        public IdentityStatus getIdentityStatus(string ClientCode, string ReceiptId)
+        public IdentityStatus getIdentityStatus(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<IdentityStatus>("/NAVER/Identity/" + ClientCode + "/" + ReceiptId);
+            return httpget<IdentityStatus>("/NAVER/Identity/" + ClientCode + "/" + receiptID);
         }
 
-        public IdentityResult verifyIdentity(string ClientCode, string ReceiptId)
+        public IdentityResult verifyIdentity(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httppost<IdentityResult>("/NAVER/Identity/" + ClientCode + "/" + ReceiptId);
+            return httppost<IdentityResult>("/NAVER/Identity/" + ClientCode + "/" + receiptID);
         }
 
         public SignReceipt requestSign(string ClientCode, Sign sign)
@@ -91,28 +91,28 @@ namespace Barocert.navercert
             return httppost<SignReceipt>("/NAVER/Sign/" + ClientCode, PostData);
         }
 
-        public SignStatus getSignStatus(string ClientCode, string ReceiptId)
+        public SignStatus getSignStatus(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<SignStatus>("/NAVER/Sign/" + ClientCode + "/" + ReceiptId);
+            return httpget<SignStatus>("/NAVER/Sign/" + ClientCode + "/" + receiptID);
         }
 
-        public SignResult verifySign(string ClientCode, string ReceiptId)
+        public SignResult verifySign(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httppost<SignResult>("/NAVER/Sign/" + ClientCode + "/" + ReceiptId);
+            return httppost<SignResult>("/NAVER/Sign/" + ClientCode + "/" + receiptID);
         }
 
         public MultiSignReceipt requestMultiSign(string ClientCode, MultiSign multiSign)
@@ -136,29 +136,29 @@ namespace Barocert.navercert
         }
 
 
-        public MultiSignStatus getMultiSignStatus(string ClientCode, string ReceiptId)
+        public MultiSignStatus getMultiSignStatus(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httpget<MultiSignStatus>("/NAVER/MultiSign/" + ClientCode + "/" + ReceiptId);
+            return httpget<MultiSignStatus>("/NAVER/MultiSign/" + ClientCode + "/" + receiptID);
         }
 
 
-        public MultiSignResult verifyMultiSign(string ClientCode, string ReceiptId)
+        public MultiSignResult verifyMultiSign(string ClientCode, string receiptID)
         {
             if (string.IsNullOrEmpty(ClientCode)) throw new BarocertException(-99999999, "이용기관코드가 입력되지 않았습니다.");
             if (false == Regex.IsMatch(ClientCode, @"^\d+$")) throw new BarocertException(-99999999, "이용기관코드는 숫자만 입력할 수 있습니다.");
             if (ClientCode.Length != 12) throw new BarocertException(-99999999, "이용기관코드는 12자 입니다.");
-            if (string.IsNullOrEmpty(ReceiptId)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
-            if (false == Regex.IsMatch(ReceiptId, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
-            if (ReceiptId.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
+            if (string.IsNullOrEmpty(receiptID)) throw new BarocertException(-99999999, "접수아이디가 입력되지 않았습니다.");
+            if (false == Regex.IsMatch(receiptID, @"^\d+$")) throw new BarocertException(-99999999, "접수아이디는 숫자만 입력할 수 있습니다.");
+            if (receiptID.Length != 32) throw new BarocertException(-99999999, "접수아이디는 32자 입니다.");
 
-            return httppost<MultiSignResult>("/NAVER/MultiSign/" + ClientCode + "/" + ReceiptId);
+            return httppost<MultiSignResult>("/NAVER/MultiSign/" + ClientCode + "/" + receiptID);
         }
 
     }

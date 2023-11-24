@@ -9,6 +9,8 @@ namespace Barocert.kakaocert
         [DataMember]
         public string reqTitle;
         [DataMember]
+        public string signTitle;
+        [DataMember]
         public string token;
     }
 }

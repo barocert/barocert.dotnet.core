@@ -30,8 +30,8 @@ namespace Barocert
         private bool _IPRestrictOnOff;
         private bool _UseStaticIP;
         private bool _UseLocalTimeYN;
-        private String _ServiceURL;
-        private String _AuthURL;
+        private string _ServiceURL;
+        private string _AuthURL;
         private string _LinkID;
         private string _SecretKey;
         private Authority _LinkhubAuth;
@@ -60,13 +60,13 @@ namespace Barocert
             get { return _UseLocalTimeYN; }
         }
 
-        public String ServiceURL
+        public string ServiceURL
         {
             set { _ServiceURL = value; }
             get { return _ServiceURL; }
         }
 
-        public String AuthURL
+        public string AuthURL
         {
             set { _LinkhubAuth.AuthURL = value; }
             get { return _LinkhubAuth.AuthURL; }
@@ -82,7 +82,7 @@ namespace Barocert
             _UseLocalTimeYN = true;
         }
 
-        public void AddScope(String scope)
+        public void AddScope(string scope)
         {
             _Scopes.Add(scope);
         }
@@ -297,7 +297,13 @@ namespace Barocert
             foreach (Barocert.kakaocert.MultiSignTokens signTokens in multiSignTokens)
             {
                 if (signTokens == null) return true;
-                if (String.IsNullOrEmpty(signTokens.reqTitle)) return true;
+                if (string.IsNullOrEmpty(signTokens.signTitle))
+                {
+                    if (string.IsNullOrEmpty(signTokens.reqTitle))
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
@@ -308,7 +314,7 @@ namespace Barocert
             foreach (Barocert.kakaocert.MultiSignTokens signTokens in multiSignTokens)
             {
                 if (signTokens == null) return true;
-                if (String.IsNullOrEmpty(signTokens.token)) return true;
+                if (string.IsNullOrEmpty(signTokens.token)) return true;
             }
             return false;
         }
@@ -319,7 +325,7 @@ namespace Barocert
             foreach (Barocert.navercert.MultiSignTokens signTokens in multiSignTokens)
             {
                 if (signTokens == null) return true;
-                if (String.IsNullOrEmpty(signTokens.tokenType)) return true;
+                if (string.IsNullOrEmpty(signTokens.tokenType)) return true;
             }
             return false;
         }
@@ -330,7 +336,7 @@ namespace Barocert
             foreach (Barocert.navercert.MultiSignTokens signTokens in multiSignTokens)
             {
                 if (signTokens == null) return true;
-                if (String.IsNullOrEmpty(signTokens.token)) return true;
+                if (string.IsNullOrEmpty(signTokens.token)) return true;
             }
             return false;
         }

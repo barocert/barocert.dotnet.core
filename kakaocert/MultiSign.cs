@@ -17,6 +17,8 @@ namespace Barocert.kakaocert
         [DataMember]
         public string reqTitle;
         [DataMember]
+        public string extraMessage;
+        [DataMember]
         public int? expireIn;
         [DataMember]
         public List<MultiSignTokens> tokens = new List<MultiSignTokens>();
