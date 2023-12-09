@@ -12,15 +12,15 @@ namespace Barocert.passcert
         public string clientCode;
         [DataMember]
         public int state;
-        [DataMember]
+        [Obsolete]
         public int expireIn;
-        [DataMember]
+        [Obsolete]
         public string callCenterName;
-        [DataMember]
+        [Obsolete]
         public string callCenterNum;
-        [DataMember]
+        [Obsolete]
         public string reqTitle;
-        [DataMember]
+        [Obsolete]
         public string reqMessage;
         [DataMember]
         public string requestDT;
@@ -30,25 +30,25 @@ namespace Barocert.passcert
         public string expireDT;
         [DataMember]
         public string rejectDT;
-        [DataMember]
+        [Obsolete]
         public string tokenType;
-        [DataMember]
+        [Obsolete]
         public bool userAgreementYN;
-        [DataMember]
+        [Obsolete]
         public bool receiverInfoYN;
-        [DataMember]
+        [Obsolete]
         public string telcoType;
-        [DataMember]
+        [Obsolete]
         public string deviceOSType;
-        [DataMember]
+        [Obsolete]
         public string originalTypeCode;
-        [DataMember]
+        [Obsolete]
         public string originalURL;
-        [DataMember]
+        [Obsolete]
         public string originalFormatCode;
-        [DataMember]
+        [Obsolete]
         public string scheme;
-        [DataMember]
+        [Obsolete]
         public bool appUseYN;
     }
 }

@@ -12,19 +12,19 @@ namespace Barocert.kakaocert
         public string clientCode;
         [DataMember]
         public int state;
-        [DataMember]
+        [Obsolete]
         public int expireIn;
-        [DataMember]
+        [Obsolete]
         public string callCenterName;
-        [DataMember]
+        [Obsolete]
         public string callCenterNum;
-        [DataMember]
+        [Obsolete]
         public string reqTitle;
-        [DataMember]
+        [Obsolete]
         public string authCategory;
-        [DataMember]
+        [Obsolete]
         public string returnURL;
-        [DataMember]
+        [Obsolete]
         public string tokenType;
         [DataMember]
         public string requestDT;
@@ -36,9 +36,9 @@ namespace Barocert.kakaocert
         public string expireDT;
         [DataMember]
         public string verifyDT;
-        [DataMember]
+        [Obsolete]
         public string scheme;
-        [DataMember]
+        [Obsolete]
         public bool appUseYN;
     }
 }

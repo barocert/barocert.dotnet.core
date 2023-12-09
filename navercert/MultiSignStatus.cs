@@ -13,25 +13,25 @@ namespace Barocert.navercert
         public string clientCode;
         [DataMember]
         public int state;
-        [DataMember]
+        [Obsolete]
         public int expireIn;
-        [DataMember]
+        [Obsolete]
         public string callCenterName;
-        [DataMember]
+        [Obsolete]
         public string callCenterNum;
-        [DataMember]
+        [Obsolete]
         public string reqTitle;
-        [DataMember]
+        [Obsolete]
         public string returnURL;
-        [DataMember]
+        [Obsolete]
         public List<string> tokenTypes;
         [DataMember]
         public string expireDT;
-        [DataMember]
+        [Obsolete]
         public string scheme;
-        [DataMember]
+        [Obsolete]
         public string deviceOSType;
-        [DataMember]
+        [Obsolete]
         public bool appUseYN;
     }
 }
