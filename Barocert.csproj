@@ -5,14 +5,14 @@
     <Authors>Linkhub</Authors>
     <Company>Linkhub</Company>
     <Description>Barocert SDK for dotnetcore</Description>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Linkhub" Version="1.6.0" />
-    <None Include="readme.md" Pack="true" PackagePath="\"/>
+    <None Include="readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
