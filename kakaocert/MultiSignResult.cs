@@ -15,5 +15,13 @@ namespace Barocert.kakaocert
         public List<string> multiSignedData;
         [DataMember]
         public string ci;
+        [DataMember]
+        public string receiverName;
+        [DataMember]
+        public string receiverYear;
+        [DataMember]
+        public string receiverDay;
+        [DataMember]
+        public string receiverHP;
     }
 }
