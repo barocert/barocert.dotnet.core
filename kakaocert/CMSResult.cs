@@ -22,5 +22,7 @@ namespace Barocert.kakaocert
         public string receiverDay;
         [DataMember]
         public string receiverHP;
+        [DataMember]
+        public string receiverGender;
     }
 }
