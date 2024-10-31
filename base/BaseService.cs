@@ -262,7 +262,7 @@ namespace Barocert
             request.Headers.Add("x-bc-version", APIVERSION);
             request.Headers.Add("x-bc-auth", hmac_str);
             request.Headers.Add("x-bc-encryptionmode", "GCM");
-            request.ReadWriteTimeOut = 70 * 1000;
+            request.ReadWriteTimeout = 70 * 1000;
 
             request.ContentLength = btPostDAta.Length;
 

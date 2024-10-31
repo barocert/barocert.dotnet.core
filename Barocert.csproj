@@ -5,7 +5,7 @@
     <Authors>Linkhub</Authors>
     <Company>Linkhub</Company>
     <Description>Barocert SDK for dotnetcore</Description>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
